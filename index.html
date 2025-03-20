@@ -23,10 +23,55 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
+
+<!-- El contenedor para el mensaje personalizado -->
+<div class="custom-alert-overlay" id="alert-overlay"></div>
+<div class="custom-alert" id="custom-alert">
+  <h2>¡Espera!</h2>
+  <p>En la parte posterior de la página, hay un botón para reproducir música. ¡Presiónalo para que tengas esa alegria que tanto caracteriza a Jorge!</p>
+  <button id="close-alert">OK</button>
+</div>
+
+<!-- Script para abrir y cerrar la alerta -->
+<script>
+  window.onload = function() {
+    // Mostrar la alerta personalizada
+    document.getElementById("custom-alert").style.display = "block";
+    document.getElementById("alert-overlay").style.display = "block";
+    
+    // Cerrar la alerta cuando se presione el botón OK
+    document.getElementById("close-alert").addEventListener("click", function() {
+      document.getElementById("custom-alert").style.display = "none";
+      document.getElementById("alert-overlay").style.display = "none";
+    });
+  };
+</script>
+  
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+           
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html">80th Birthday</a>
+          <button onclick="toggleAudio()" id="audioButton" class="play-button">Reproducir Música</button>
+
+          <audio id="audio" loop>
+            <source src="music/spring_rain.mp3" type="audio/mpeg">
+          </audio>
+          
+          <script>
+            var audio = document.getElementById('audio');
+            var button = document.getElementById('audioButton');
+          
+            function toggleAudio() {
+              if (audio.paused) {
+                audio.play();
+                button.textContent = "Pausar Música"; // Cambiar texto a "Pausar Música"
+              } else {
+                audio.pause();
+                button.textContent = "Reproducir Música"; // Cambiar texto a "Reproducir Música"
+              }
+            }
+          </script>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span>
 	      </button>
@@ -59,9 +104,27 @@
 						<div class="icon" style="font-size: 50px; color: white;">
 							<span class="flaticon-birthday-cake"></span> <!-- Icono de pastel de cumpleaños -->
 						</div>
-						<span class="subheading animated-text" style="font-family: 'Great Vibes', cursive; color: bisque; font-size: 44px; font-weight: bold; animation: fadeInUp 1.5s ease-in-out forwards; animation-delay: 0.5s;">Mis 80 Años</span>
+                        <span class="subheading animated-text" 
+                        style="font-family: 'Great Vibes', cursive; 
+                               color: #272ad4; 
+                               font-size: 44px; 
+                               font-weight: bold; 
+                               animation: fadeInUp 1.5s ease-in-out forwards; 
+                               animation-delay: 0.5s; 
+                               text-shadow: 1px 1px 2px #999, 0 0 25px #999, 0 0 5px #999;">
+                        Mis 80 Años
+                      </span>
 						<h1 class="animated-text vintage-text" style="font-family: 'Cinzel', serif; font-size: 55px; font-weight: 700; color: white; text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.7); letter-spacing: 2px; animation: fadeInUp 1.5s ease-in-out forwards; animation-delay: 1s;">Jorge Rocha</h1>
-						<p class="animated-text" style="font-family: 'Great Vibes', cursive; font-size: 28px; font-weight: bold; color: bisque; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); animation: fadeInUp 1.5s ease-in-out forwards; animation-delay: 1.5s;">Acompáñanos a festejar este gran día</p>
+                        <p class="animated-text" 
+                        style="font-family: 'Great Vibes', cursive; 
+                               font-size: 34px; 
+                               font-weight: bold; 
+                               color: #272ad4; 
+                               text-shadow: 1px 1px 2px #999, 0 0 25px #999, 0 0 5px #999; 
+                               animation: fadeInUp 1.5s ease-in-out forwards; 
+                               animation-delay: 1.5s;">
+                        Acompáñanos a festejar este gran día
+                      </p>                      
 					</div>
 				</div>
 			</div>
@@ -96,13 +159,13 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8"> <!-- Ajuste para centrar en pantallas grandes -->
                 <div class="p-4 p-lg-5 text-center"
-                    style="background-color: #f8f1e4; border-radius: 15px; 
+                    style="background-color: #fbf9f5; border-radius: 15px; 
                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); max-width: 100%;">
                     
                     <!-- Mensaje principal -->
                     <span class="subheading mb-4 d-block" 
                         style="font-size: 1rem; font-family: 'Georgia', serif; 
-                               color: #5c4e1f; word-wrap: break-word;">
+                               color: #272ad4; word-wrap: break-word;">
                         Hoy celebramos no solo 80 años de vida, <br>
                         sino 80 años de recuerdos, risas, aprendizajes y momentos compartidos. <br>
                         Cada uno de nosotros ha sido parte de su historia, <br>
@@ -114,37 +177,38 @@
                     <h2 class="mb-4" 
                         style="font-family: 'Comic Sans MS', cursive; 
                                font-size: 2.5rem; font-weight: bold; 
-                               color: white; text-shadow: 
+                               color: #272ad4; text-shadow: 
                                2px 2px 4px rgba(0, 0, 0, 0.5), 
-                               0 0 10px rgba(212, 175, 55, 1), 
-                               0 0 20px rgba(212, 175, 55, 1), 
-                               0 0 30px rgba(212, 175, 55, 0.7);
+                               0 0 10px rgb(167, 167, 167), 
+                               0 0 20px rgba(167, 167, 167), 
+                               0 0 30px rgba(167, 167, 167);
                                letter-spacing: 2px; text-align: center;">
                         ¡80th Birthday!
                     </h2>
 
                     <!-- Ícono decorativo -->
                     <span class="icon flaticon-rose-variant-outline-with-vines d-block mb-3" 
-                        style="font-size: 3rem; color: #d35400;"></span>
+                        style="font-size: 3rem; color: rgb(167, 167, 167);"></span>
 
                     <!-- Información del evento -->
                     <span class="subheading d-block" 
-                        style="font-size: 1.1rem; color: #3c3c3c;">
+                        style="font-size: 1.1rem; color: #272ad4;">
                         Acompáñame el
                     </span>
 
                     <p class="time mb-3" 
-                        style="font-size: 1.8rem; font-weight: bold; color: #d35400;">
-                        <span>20 | Abr | 2025</span>
-                    </p>
+                    style="font-size: 1.8rem; font-weight: bold; color: #c0c0c0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
+                    <span>20 | Abr | 2025</span>
+                </p>
+                
 
                     <span class="subheading d-block mb-2" 
-                        style="font-size: 1.1rem; color: #3c3c3c;">
-                        A partir de las 2:00 pm
+                        style="font-size: 1.1rem; color: #272ad4;">
+                        A partir de las 2:30 pm
                     </span>
 
                     <span class="subheading d-block" 
-                        style="font-size: 1.1rem; color: #3c3c3c;">
+                        style="font-size: 1.1rem; color: #272ad4;">
                         Salón, "EL RAYO" Av. Juarez s/n <br> Santiago Tulantepec, Hgo.
                     </span>
                 </div>
